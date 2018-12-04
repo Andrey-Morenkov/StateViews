@@ -113,7 +113,7 @@ class StateView : ViewFlipper {
 
                 setTitleValue(view, state.title, builder!!.textColor, builder.font)
                 setDescriptionValue(view, state.description, builder.textColor, builder.font)
-                setIcon(view, state.icon, builder.iconColor, builder.iconSize!!)
+                setIcon(view, state.icon, state.iconColor?:builder.iconColor, builder.iconSize!!)
                 setButtonStyle(view, state.buttonTitle, builder.font, builder.buttonBackgroundColor, builder.buttonTextColor)
 
                 view.tag = state.tag
@@ -177,6 +177,10 @@ class StateView : ViewFlipper {
         return showingState?:"none"
     }
     fun displayState(tagName: String) {
+        if(tagName == "hide"){
+            hideStates()
+            return
+        }
 
         var found: Boolean? = false
         for (i in 0 until childCount) {
@@ -314,7 +318,7 @@ class StateView : ViewFlipper {
         } else {
             val typedValue = TypedValue()
             context.theme.resolveAttribute(R.attr.colorAccent, typedValue, true)
-            mImageView.setColorFilter(typedValue.data, android.graphics.PorterDuff.Mode.SRC_IN)
+//            mImageView.setColorFilter(typedValue.data, android.graphics.PorterDuff.Mode.SRC_IN)
         }
 
         if (iconSize > 0) {

@@ -14,6 +14,7 @@ class StateModel {
     var title: String? = null
     var description: String? = null
     var icon: Drawable? = null
+    var iconColor: Int? = null
     var buttonTitle: String? = null
     var layoutId: Int? = null
     var view: View? = null

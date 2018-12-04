@@ -7,6 +7,14 @@ Create & Show progress, data or error views, the easy way!
 StateViews is based on ViewSwitcher mechanism and allows to handle the different app states, from loading... to displaying
 data and error views, the library is tiny and fully customizable.
 
+This repo has been developed from https://github.com/medyo/StateViews.
+
+Different features of original repo:
+- Codes converted to Kotlin
+- Fixed some memory leaks
+- Icons colors can be customized separately
+- Added showing state status
+
 ```xml
 <com.umutbey.stateviews.StateView
         android:id="@+id/status_page"
@@ -38,20 +46,29 @@ mStatusPage.hideStates();
 
 
 ## Setup
-[![Snapshot](https://jitpack.io/v/medyo/stateviews.svg?style=flat-square)](https://jitpack.io/private#medyo/stateviews/-SNAPSHOT)
+[![](https://jitpack.io/v/kobeumut/StateViews.svg)](https://jitpack.io/#kobeumut/StateViews)
+
 ```
-implementation 'com.github.medyo:state-views:0.2'
+allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
+
+```
+implementation 'com.github.kobeumut:StateViews:0.4'
 ```
 
 ## Usage
-[medyo/StateViews/app/](https://github.com/medyo/StateViews/tree/master/app)
 
 ### 1. Available attributes for PageStatus Builder
 
 | Function        | Description  |
 | ------------- |:-------------:|
-| addState(params) | Create a new state|
-| setIconColor(Int) | Set Icon color |
+| addState(params) | Create a new state. Params are tag, title, description, icon, spesific icon color, button text, clicklistener|
+| setIconColor(Int) | Set Icon color for all icons(Same color) |
 | setIconSize(Int) | Set Icon Size |
 | setTextColor(Int) |  set Title and description colors|
 | setFontFace(String) | Set Custom font |
@@ -63,7 +80,7 @@ implementation 'com.github.medyo:state-views:0.2'
 
 | Function        | Description  |
 | ------------- |:-------------:|
-| displayState(String) | Display a state by his tag name|
+| displayState(String) | Display a state by his tag name. If you want to send displayState("hide") parameter, state will hide |
 | hideStates() | Hide all states and display data|
 | displayLoadingState() | Display the loading state|
 | addCustomState(Intent) | Create a new state only available for the current activity, fragment...|
@@ -81,6 +98,7 @@ addState(
     "No Connection",
     "Error retrieving information from server.",
     AppCompatResources.getDrawable(this, R.drawable.ic_server_error),
+    Color.Black,
     "Retry"
     );
 
@@ -96,7 +114,7 @@ addState(
     "TAG_NO_RESULTS",
     "No Results Found",
     "Unfortunately I could not find any results matching your search",
-    AppCompatResources.getDrawable(this, R.drawable.search), null
+    AppCompatResources.getDrawable(this, R.drawable.search), ,null, null
 )
 
 mStatusPage.displayState("TAG_NO_RESULTS");

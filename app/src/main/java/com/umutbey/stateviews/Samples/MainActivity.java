@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     StateView mStatusPage;
-    Button mLoading, mError, mCustom, mSearch;
+    Button mLoading, mError, mCustom, mSearch, mHide;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +23,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mError = findViewById(R.id.button_error);
         mCustom = findViewById(R.id.button_custom);
         mSearch = findViewById(R.id.button_search);
+        mHide = findViewById(R.id.button_hide);
 
         mLoading.setOnClickListener(this);
         mError.setOnClickListener(this);
         mCustom.setOnClickListener(this);
         mSearch.setOnClickListener(this);
+        mHide.setOnClickListener(this);
 
         mStatusPage = findViewById(R.id.status_page);
         mStatusPage.setOnStateButtonClicked(new View.OnClickListener() {
@@ -59,6 +61,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.button_search: {
                 mStatusPage.displayState("search");
+                break;
+            }
+            case R.id.button_hide: {
+                mStatusPage.displayState("hide");
+                break;
             }
         }
     }

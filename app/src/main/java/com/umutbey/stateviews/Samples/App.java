@@ -2,8 +2,10 @@ package com.umutbey.stateviews.Samples;
 
 import android.app.Application;
 import android.graphics.Color;
-import androidx.appcompat.content.res.AppCompatResources;
+
 import com.umutbey.stateviews.StateViewsBuilder;
+
+import androidx.appcompat.content.res.AppCompatResources;
 
 /**
  * Created by medyo on 11/20/17.
@@ -16,14 +18,13 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
 
-        StateViewsBuilder state = StateViewsBuilder.Companion
-                .init();
-
-                state.setIconColor(Color.parseColor("#D2D5DA"))
+        StateViewsBuilder.Companion
+                .init()
                 .addState("error",
                         "No Connection",
                         "Error retrieving information from server.",
                         AppCompatResources.getDrawable(this, R.drawable.ic_server_error),
+                        Color.RED,
                         "Retry"
                 )
 
@@ -33,18 +34,19 @@ public class App extends Application {
                         "Archived items will be kept here. They'll still show in albums " +
                                 "& search results.",
                         AppCompatResources.getDrawable(this, R.drawable.photos_archive),
+                        Color.BLUE,
                         "LEARN MORE"
                 )
 
                 .addState("search",
                         "No Results Found",
                         "Unfortunately I could not find any results matching your search",
-                        AppCompatResources.getDrawable(this, R.drawable.search),null)
-
+                        AppCompatResources.getDrawable(this, R.drawable.search), null, null)
                 .addState("custom",
                         "Custom State",
                         "This is a custom state, made in 5 seconds \nClick to hide status ",
-                        AppCompatResources.getDrawable(this, R.drawable.fingerprint),
+                        AppCompatResources.getDrawable(this, R.drawable.caution),
+                        null,
                         "HIDE STATE")
                 .setButtonBackgroundColor(Color.parseColor("#317DED"))
                 .setButtonTextColor(Color.parseColor("#FFFFFF"))

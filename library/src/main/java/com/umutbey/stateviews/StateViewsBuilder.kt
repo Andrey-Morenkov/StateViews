@@ -1,11 +1,9 @@
 package com.umutbey.stateviews
 
-import android.content.Context
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.view.View
-
-import java.util.ArrayList
+import java.util.*
 
 /*
  * Created by medyo on 11/15/17.
@@ -14,7 +12,7 @@ import java.util.ArrayList
 
 class StateViewsBuilder private constructor() {
     private val TAG = "StateViewsBuilder"
-//    var context: Context
+    //    var context: Context
 //        internal set
     private var mStates: MutableList<StateModel> = ArrayList()
     var textColor: Int? = null
@@ -78,7 +76,7 @@ class StateViewsBuilder private constructor() {
         return this
     }
 
-    fun addState(tag: String, title: String?=null, description: String?=null, icon: Drawable?=null, buttonTitle: String?=null, clickListener: View.OnClickListener?=null): StateViewsBuilder {
+    private fun addingState(tag: String, title: String? = null, description: String? = null, icon: Drawable? = null, iconColor: Int? = null, buttonTitle: String? = null, clickListener: View.OnClickListener? = null): StateViewsBuilder {
 
         val state = StateModel()
         state.title = title
@@ -86,6 +84,7 @@ class StateViewsBuilder private constructor() {
         state.buttonTitle = buttonTitle
         state.clickListener = clickListener
         state.icon = icon
+        state.iconColor = iconColor
         state.tag = tag
         state.custom = false
 
@@ -94,8 +93,8 @@ class StateViewsBuilder private constructor() {
         return this
     }
 
-    fun addState(tag: String, title: String?=null, description: String?=null, icon: Drawable?=null, buttonTitle: String?=null): StateViewsBuilder {
-        addState(tag, title, description, icon, buttonTitle,null)
+    fun addState(tag: String, title: String? = null, description: String? = null, icon: Drawable? = null, iconColor: Int? = null, buttonTitle: String? = null, clickListener: View.OnClickListener? = null): StateViewsBuilder {
+        addingState(tag, title, description, icon, iconColor, buttonTitle, clickListener)
         return this
     }
 

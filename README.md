@@ -8,7 +8,7 @@ StateViews is based on ViewSwitcher mechanism and allows to handle the different
 data and error views, the library is tiny and fully customizable.
 
 ```xml
-<sakout.mehdi.StateViews.StateView
+<com.umutbey.stateviews.StateView
         android:id="@+id/status_page"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -19,7 +19,7 @@ data and error views, the library is tiny and fully customizable.
             android:layout_gravity="center"
             android:text="Hello World!" />
 
- </sakout.mehdi.StateViews.StateView>
+ </com.umutbey.stateviews.StateView>
 ```
 Then Call the appropriate state:
 

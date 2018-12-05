@@ -58,7 +58,7 @@ allprojects {
 ```
 
 ```
-implementation 'com.github.kobeumut:StateViews:0.4'
+implementation 'com.github.kobeumut:StateViews:0.5'
 ```
 
 ## Usage
@@ -67,7 +67,7 @@ implementation 'com.github.kobeumut:StateViews:0.4'
 
 | Function        | Description  |
 | ------------- |:-------------:|
-| addState(params) | Create a new state. Params are tag, title, description, icon, spesific icon color, button text, clicklistener|
+| setState(params) | Create a new state. Params are tag, title, description, icon, spesific icon color, button text, clicklistener|
 | setIconColor(Int) | Set Icon color for all icons(Same color) |
 | setIconSize(Int) | Set Icon Size |
 | setTextColor(Int) |  set Title and description colors|
@@ -93,7 +93,7 @@ implementation 'com.github.kobeumut:StateViews:0.4'
 ![No Connection](/art/no_connection.jpg)
 
 ```java
-addState(
+setState(
     "TAG_ERROR",
     "No Connection",
     "Error retrieving information from server.",
@@ -110,7 +110,7 @@ mStatusPage.displayState("TAG_ERROR");
 ![No Data](/art/no_data.jpg)
 
 ```java
-addState(
+setState(
     "TAG_NO_RESULTS",
     "No Results Found",
     "Unfortunately I could not find any results matching your search",

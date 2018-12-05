@@ -53,7 +53,7 @@ class StateViewsBuilder private constructor() {
     }
 
 
-    fun addState(tagName: String, view: View): StateViewsBuilder {
+    fun setState(tagName: String, view: View): StateViewsBuilder {
 
         val state = StateModel()
         state.view = view
@@ -64,7 +64,7 @@ class StateViewsBuilder private constructor() {
         return this
     }
 
-    fun addState(tagName: String, layout: Int): StateViewsBuilder {
+    fun setState(tagName: String, layout: Int): StateViewsBuilder {
 
         val state = StateModel()
         state.layoutId = layout
@@ -76,25 +76,30 @@ class StateViewsBuilder private constructor() {
         return this
     }
 
-    private fun addingState(tag: String, title: String? = null, description: String? = null, icon: Drawable? = null, iconColor: Int? = null, buttonTitle: String? = null, clickListener: View.OnClickListener? = null): StateViewsBuilder {
-
-        val state = StateModel()
-        state.title = title
-        state.description = description
-        state.buttonTitle = buttonTitle
-        state.clickListener = clickListener
-        state.icon = icon
-        state.iconColor = iconColor
-        state.tag = tag
-        state.custom = false
-
-        mStates.add(state)
-
+    private fun settingState(tag: String, title: String? = null, description: String? = null, icon: Drawable? = null, iconColor: Int? = null, buttonTitle: String? = null, clickListener: View.OnClickListener? = null): StateViewsBuilder {
+        var state: StateModel? = null
+        var isThere = false
+        val statesFilter = states.filter { it.tag == tag }
+        if (!statesFilter.isNullOrEmpty()) {
+            isThere = true
+            statesFilter.map { state = it }
+        } else {
+            state = StateModel()
+        }
+        state?.title = title
+        state?.description = description
+        state?.buttonTitle = buttonTitle
+        state?.clickListener = clickListener
+        state?.icon = icon
+        state?.iconColor = iconColor
+        state?.tag = tag
+        state?.custom = false
+        state?.let { if(!isThere) mStates.add(it) }
         return this
     }
 
-    fun addState(tag: String, title: String? = null, description: String? = null, icon: Drawable? = null, iconColor: Int? = null, buttonTitle: String? = null, clickListener: View.OnClickListener? = null): StateViewsBuilder {
-        addingState(tag, title, description, icon, iconColor, buttonTitle, clickListener)
+    fun setState(tag: String, title: String? = null, description: String? = null, icon: Drawable? = null, iconColor: Int? = null, buttonTitle: String? = null, clickListener: View.OnClickListener? = null): StateViewsBuilder {
+        settingState(tag, title, description, icon, iconColor, buttonTitle, clickListener)
         return this
     }
 
